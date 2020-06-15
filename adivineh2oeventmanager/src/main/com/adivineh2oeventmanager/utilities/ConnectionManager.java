@@ -21,7 +21,7 @@ public class ConnectionManager {
 //		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 //	    InputStream fis = classloader.getResourceAsStream("connection.prop");
 	    
-	    FileInputStream fis = new FileInputStream("/Users/shimatacb/Desktop/work/web_dev/Revature/Code/ShimataCRepo/ADivineH2O/adivineh2oeventmanager/connection.prop");
+	    FileInputStream fis = new FileInputStream("/Users/shimatacb/Desktop/work/web_dev/Revature/Code/ShimataCRepo/adivineh2oeventmanager/connection.prop");
 		Properties p = new Properties();
 		p.load(fis);
 		return p;
