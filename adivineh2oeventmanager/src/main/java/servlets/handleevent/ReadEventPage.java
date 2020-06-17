@@ -33,7 +33,7 @@ public class ReadEventPage extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		System.out.println(request.getAttribute("titleToView" + "not exist"));
+		checkLoggedIn(request, response);
 		String action = request.getParameter("action") == null ? "" : request.getParameter("action");
 		try {
 			switch (action) {
@@ -52,6 +52,14 @@ public class ReadEventPage extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			throw new ServletException(e);
+		}
+	}
+	
+	private void checkLoggedIn(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("currentPerson") == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ReadPersonLoginPage");
+			dispatcher.forward(request, response);
 		}
 	}
 

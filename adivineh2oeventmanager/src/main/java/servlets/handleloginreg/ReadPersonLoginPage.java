@@ -20,7 +20,9 @@ import main.java.validator.PersonValidator;
 public class ReadPersonLoginPage extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	//logger
 	static final Logger logger = Logger.getLogger(ReadPersonLoginPage.class);
+	
 	PersonDAO personDAO = ConnectionManager.getPersonDAO();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +40,9 @@ public class ReadPersonLoginPage extends HttpServlet {
 
 		if (PersonValidator.isValidLoginInfo(phone, pass)) {
 			if (personDAO.isPhoneAndPassMatch(phone, pass)) {
-				// logger.debug("person with phone" + phone + "had a db matching password");
+				//logger impl 
+				logger.debug("person with phone" + phone + "had a db matching password");
+				logger.info("logging a message");
 				// get the user from db and set user in session
 				request.getSession().setAttribute("currentPerson", personDAO.getPerson(phone));
 

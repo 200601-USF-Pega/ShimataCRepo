@@ -30,9 +30,11 @@ public class ReadAllEventPage extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String action = request.getParameter("action") == null ? "" : request.getParameter("action");
-		//always check session fist and redirect to login if != exist
 		
+		checkLoggedIn(request, response);
+		String action = request.getParameter("action") == null ? "" : request.getParameter("action");
+		// always check session fist and redirect to login if != exist
+
 		try {
 			switch (action) {
 			case "DeleteEvent":
@@ -52,13 +54,20 @@ public class ReadAllEventPage extends HttpServlet {
 		}
 	}
 
+	private void checkLoggedIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getSession().getAttribute("currentPerson") == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ReadPersonLoginPage");
+			dispatcher.forward(request, response);
+		}
+	}
+
 	private void readAllEvent(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		// don't set to session because we want this to fire every refresh incase new
 		// items have been added
 		List<Event> allEvent = eventDAO.getAllEvents();
 		request.setAttribute("allEvent", allEvent);
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("readAllEventPage.jsp");
 		dispatcher.forward(request, response);
 
@@ -69,7 +78,6 @@ public class ReadAllEventPage extends HttpServlet {
 		String titleToView = request.getParameter("titleToView");
 		request.getSession().setAttribute("titleToView", titleToView);
 		response.sendRedirect("ReadEventPage");
-
 
 	}
 

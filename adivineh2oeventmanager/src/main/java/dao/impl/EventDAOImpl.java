@@ -6,10 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import main.java.dao.EventDAO;
 import main.java.model.Event;
-import main.java.model.Person;
 import main.java.utilities.ConnectionManager;
 
 public class EventDAOImpl implements EventDAO {

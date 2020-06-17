@@ -40,6 +40,7 @@ public class ReadPersonPage extends HttpServlet {
 		//make a couple abstract classes that implement them
 		//extend the abstract classes and overwrite if necessary
 		//much less duplicate code!!
+		checkLoggedIn(request, response);
 		String action = request.getParameter("action") == null ? "" : request.getParameter("action");
 		try {
 			switch (action) {
@@ -52,6 +53,13 @@ public class ReadPersonPage extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			throw new ServletException(e);
+		}
+	}
+	
+	private void checkLoggedIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getSession().getAttribute("currentPerson") == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ReadPersonLoginPage");
+			dispatcher.forward(request, response);
 		}
 	}
 
