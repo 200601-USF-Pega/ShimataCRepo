@@ -12,13 +12,13 @@ public class PersonDAOImplTest {
 	@Test
 	public void testUpdatePersonPass() {
 		PersonDAOImpl personDAOImpl = new PersonDAOImpl(); 
-		boolean result = personDAOImpl.updatePersonPass("4242705023", "Awesome00!");
+		boolean result = personDAOImpl.putUpdatePass("4242705023", "Awesome00!");
 		Assert.assertEquals(true, result);
 	}
 	@Ignore @Test
 	public void testisPhoneAndPassMatch() {
 		PersonDAOImpl personDAOImpl = new PersonDAOImpl(); 
-		boolean result = personDAOImpl.isPhoneAndPassMatch("4242705023", "Awesome00!");
+		boolean result = personDAOImpl.readGetPersonLogin("4242705023", "Awesome00!");
 		Assert.assertEquals(true, result);
 	}
 }
