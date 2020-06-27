@@ -53,7 +53,7 @@ public class EventRouter {
 	@POST
 	@Path("supply")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createPostSupplyToEvent(Supply supply) {
+	public Response createPostEventSupply(Supply supply) {
 		eventDAO.createPostEventSupply(supply);
 		return Response.status(201).build();
 	}
@@ -61,7 +61,7 @@ public class EventRouter {
 	@POST
 	@Path("schedule")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createPostScheduleToEvent(Schedule schedule) {
+	public Response createPostEventSchedule(Schedule schedule) {
 		eventDAO.createPostEventSchedule(schedule);
 		return Response.status(201).build();
 	}
@@ -69,16 +69,16 @@ public class EventRouter {
 	@POST
 	@Path("message_thread")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createPostMessageThreadToEvent(MessageThread message_thread) {
+	public Response createPostEventMessageThread(MessageThread message_thread) {
 		eventDAO.createPostEventMessageThread(message_thread);
 		return Response.status(201).build();
 	}
 
 	@POST
-	@Path("message_thread/message/{title}")
+	@Path("message_thread/message")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createPostMessageToMessageThread(Message message, @PathParam("title") String title) {
-		eventDAO.createPostMessageThreadMessage(message, title);
+	public Response createPostMessageThreadMessage(Message message) {
+		eventDAO.createPostMessageThreadMessage(message);
 		return Response.status(201).build();
 	}
 
@@ -130,7 +130,7 @@ public class EventRouter {
 	@PUT
 	@Path("{original_title}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updatePostEvent(Event event, @PathParam("original_title") String original_title) {
+	public Response updatePutEvent(Event event, @PathParam("original_title") String original_title) {
 		eventDAO.updatePutEvent(event, original_title);
 		return Response.status(202).build();
 	}
@@ -138,7 +138,7 @@ public class EventRouter {
 	@PUT
 	@Path("supply")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updatePostEventSupply(Supply supply) {
+	public Response updatePutEventSupply(Supply supply) {
 		eventDAO.updatePutEventSupply(supply);
 		return Response.status(202).build();
 	}
@@ -146,7 +146,7 @@ public class EventRouter {
 	@PUT
 	@Path("schedule")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updatePostEventSchedule(Schedule schedule) {
+	public Response updatePutEventSchedule(Schedule schedule) {
 		eventDAO.updatePutEventSchedule(schedule);
 		return Response.status(202).build();
 	}
@@ -162,17 +162,17 @@ public class EventRouter {
 	}
 
 	@DELETE
-	@Path("supply/{supply_auto_id}")
+	@Path("supply")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteDeleteEventSupply(@PathParam("supply_auto_id") String supply_auto_id) {
+	public Response deleteDeleteEventSupply(int supply_auto_id) {
 		eventDAO.deleteDeleteEventSupply(supply_auto_id);
 		return Response.status(204).build();
 	}
 
 	@DELETE
-	@Path("person/{title}")
+	@Path("person/{title}/{person_auto_id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteDeletePersonFromEvent(@PathParam("title") String title, int person_auto_id) {
+	public Response deleteDeletePersonFromEvent(@PathParam("title") String title, @PathParam("person_auto_id") int person_auto_id) {
 		eventDAO.deleteDeletePersonFromEvent(title, person_auto_id);
 		return Response.status(204).build();
 	}

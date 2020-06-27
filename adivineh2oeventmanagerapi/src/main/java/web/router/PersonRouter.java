@@ -1,8 +1,8 @@
 package main.java.web.router;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -15,11 +15,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import main.java.dao.EventDAO;
 import main.java.dao.PersonDAO;
 import main.java.model.Event;
 import main.java.model.Message;
-import main.java.model.MessageThread;
 import main.java.model.Person;
 import main.java.model.RegisterContainer;
 import main.java.model.Schedule;
@@ -101,7 +99,7 @@ public class PersonRouter {
 	@Path("message_all/message_thread_match/{person_auto_id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response readGetPersonMessageAllMessageThreadMatch(@PathParam("person_auto_id") int person_auto_id) {
-		return Response.ok((HashMap<String, ArrayList<Message>>) personDAO
+		return Response.ok((HashMap<Timestamp, ArrayList<Message>>) personDAO
 				.readGetPersonMessageAllMessageThreadMatch(person_auto_id)).build();
 	}
 
@@ -110,7 +108,7 @@ public class PersonRouter {
 	@PUT
 	@Path("/person")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response postUpdatePerson(Person person) {
+	public Response updatePutPerson(Person person) {
 		personDAO.updatePutPerson(person);
 		return Response.status(202).build();
 	}
@@ -118,7 +116,7 @@ public class PersonRouter {
 	@PUT
 	@Path("pass/{phone}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response postUpdatePersonPass(@PathParam("phone") String phone, ArrayList<String> old_pass_new_pass) {
+	public Response updatePutPersonPass(@PathParam("phone") String phone, ArrayList<String> old_pass_new_pass) {
 		personDAO.updatePutPersonPass(phone, old_pass_new_pass.get(0), old_pass_new_pass.get(1));
 		return Response.status(202).build();
 	}
