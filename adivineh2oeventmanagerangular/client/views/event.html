@@ -1,6 +1,27 @@
 <body ng-controller="EventController">
 	<nav ng-include="'/views/top/nav.html'"></nav>
+	<p>{{eventview.message}}</p>
 
-	<h2>Event</h2>
-  {{event.testMessage}}
+	<div class="text-center w-85 p-3">
+		<h2 class=" mr-n5 d-inline-block">Event</h2>
+		<button ng-click='viewEventMessageThread()' type="button" class="btn btn-primary pull-right"><span class="fa fa-comment"></span></button>
+		<button ng-click='viewAddSupplyToEvent()' type="button" class=" btn btn-primary pull-right">+ <span class="fa fa-cutlery"></span><span class="fa fa-shopping-basket"></span></button>
+		<button ng-click='viewAddPersonToEvent()' type="button" class="btn btn-primary pull-right">+ <span class="fa fa-user"></span></button>
+	</div>
+	<div class="col-sm-6 d-inline-block">
+		<form name="eventviewForm" ng-controller="EventController" class="form-group">
+			Title: <input required type="text" class='form-control' ng-model="eventview.title" required>
+			Address #: <input type="number" class='form-control' ng-model="eventview.address_number" required>
+			Street: <input type="text" class='form-control' ng-model="eventview.street_name" required>
+			City: <input type="text" class='form-control' ng-model="eventview.city" required>
+			State: <input type="text" class='form-control' ng-model="eventview.state" required>
+			Zip: <input type="number" class='form-control' ng-model="eventview.zip" required>
+			# Helpers Needed: <input type="number" class='form-control' ng-model="eventview.number_helpers_needed" required>
+			Info Url: <input type="url" class='form-control' ng-model="eventview.info_url" required>
+			Image Url: <input type="url" class='form-control' ng-model="eventview.event_image_url" required>
+			<button class="btn btn-primary" type="button" ng-click="addOrUpdateEvent(eventview.title)">Submit</button>
+
+		</form>
+	</div>
+
 </body>

@@ -1,10 +1,9 @@
 myApp.controller('EventsController',['EventsFactory', '$window', '$scope', '$location', function(EventsFactory, $window, $scope, $location) {
 
 var self = this;
-
 self.message = "";
 
-EventsFactory.GetEventAll().then(function(response){
+var getEvents = EventsFactory.getEventAll().then(function(response){
     self.events = response;
 });
 
@@ -20,18 +19,22 @@ $scope.logout=function() {
 };
 
 $scope.addEvent=function() {
-
+	$location.path('/event/');
 };
 
 $scope.deleteEvent=function(event_title) {
-	EventsFactory.deleteEvent().then(function(response){
-	    self.message = response;
-	});
+		EventsFactory.deleteEvent(event_title).then(function(response){
+		    self.message = response;
+				getEvents;
+		});
 
 };
+
 $scope.viewEvent=function(event_title) {
 	$location.path('/event/:' + event_title);
 };
+
+
 
 
 

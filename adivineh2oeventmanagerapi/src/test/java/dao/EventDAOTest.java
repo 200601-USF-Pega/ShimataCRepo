@@ -34,7 +34,7 @@ public class EventDAOTest {
 	Person person;
 
 	@Test
-	public void saveTest() {
+	public void testCreatePostEvent() {
 		boolean saved = eventdaoimpl.createPostEvent(event);
 		assertEquals(true, saved);
 

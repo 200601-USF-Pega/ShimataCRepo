@@ -1,6 +1,8 @@
 myApp.factory('APIRoutes',['$http',function($http) {
 		var baseURL = "http://adivineh2oeventmanagerapi.us-east-1.elasticbeanstalk.com/router/";
 		var responseHandle = '?callback=JSON_CALLBACK';
+		// var responseHandle = '';
+
 
 		var title = "";
 		var original_title = "";
@@ -28,7 +30,7 @@ myApp.factory('APIRoutes',['$http',function($http) {
 
 
 	 var possibleRequests = [
-		 {type: "post", route: "event", subroute: "", param: "", body: eventObject},
+		 {type: "post", route: "event", subroute: "/event", param: "", body: eventObject},
 		 {type: "post", route: "event", subroute: "/person/", param: title, body: person_auto_id},
 		 {type: "post", route: "event", subroute: "/supply", param: "", body: supplyObject},
 		 {type: "post", route: "event", subroute: "/schedule", param: "", body: scheduleObject},
@@ -67,9 +69,9 @@ myApp.factory('APIRoutes',['$http',function($http) {
 				var type = requestOption.type;
 				var route = requestOption.route;
 				var subroute = requestOption.subroute;
-				var p = requestOption.param == "" ? requestOption.param : param;
+				// var p = param == "" ? requestOption.param : param;
 
-				var url = baseURL + route + subroute + p + responseHandle;
+				var url = baseURL + route + subroute + param + responseHandle;
 				switch (type) {
 					case 'post':
 							return $http.post(url, body);
@@ -78,6 +80,8 @@ myApp.factory('APIRoutes',['$http',function($http) {
 					case 'put':
 					return $http.put(url, body);
 					case 'delete':
+							console.log("hello " + url);
+
 							return $http.delete(url);
 				}
 			};

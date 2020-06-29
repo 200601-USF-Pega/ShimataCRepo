@@ -29,10 +29,15 @@ myApp.config(['$routeProvider', function($routeProvider) {
           controller: 'RegisterController',
           controllerAs: 'register'
         })
+				.when ('/event', {
+						templateUrl: '/views/event.html',
+						controller: 'EventController',
+						controllerAs: 'eventview'
+				})
 				.when ('/event/:event_title', {
             templateUrl: '/views/event.html',
             controller: 'EventController',
-            controllerAs: 'event'
+            controllerAs: 'eventview'
         })
 				.when ('/person/:person_auto_id', {
             templateUrl: '/views/person.html',
