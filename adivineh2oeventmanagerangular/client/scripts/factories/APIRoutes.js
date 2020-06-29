@@ -1,5 +1,5 @@
 myApp.factory('APIRoutes',['$http',function($http) {
-		var baseURL = "http://adivineh2oeventmanagerapi.us-east-1.elasticbeanstalk.com/router/";
+		var baseURL = "https://adivineh2oeventmanagerapi.us-east-1.elasticbeanstalk.com/router/";
 		var responseHandle = '?callback=JSON_CALLBACK';
 		// var responseHandle = '';
 
