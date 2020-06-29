@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Project Template</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css" />
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <script type="text/javascript" src="/scripts/clientRoutes.js"></script>
+
+		<script type="text/javascript" src="/scripts/factories/APIRoutes.js"></script>
+		<script type="text/javascript" src="/scripts/factories/EventsFactory.js"></script>
+		<script type="text/javascript" src="/scripts/factories/PeopleFactory.js"></script>
+
+
+
+    <script type="text/javascript" src="/scripts/controllers/HomeController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/LoginController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/NavController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/RegisterController.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/EventsController.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/PeopleController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/EventController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/PersonController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/SuppliesController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/SupplyController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/MessageThreadsController.js"></script>
+		<script type="text/javascript" src="/scripts/controllers/MessageThreadController.js"></script>
+
+  </head>
+  <body id="full-wrapper" >
+			<header id="main-header" class="text-center" ng-include="'/views/top/header.html'"></header>
+	    <main ng-view></main>
+  </body>
+</html>

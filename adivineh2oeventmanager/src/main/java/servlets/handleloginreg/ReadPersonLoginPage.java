@@ -17,6 +17,7 @@ import main.java.model.Person;
 import main.java.utilities.ConnectionManager;
 import main.java.validator.PersonValidator;
 
+@WebServlet(value = "/ReadPersonLoginPage")
 public class ReadPersonLoginPage extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -25,41 +26,43 @@ public class ReadPersonLoginPage extends HttpServlet {
 	
 	PersonDAO personDAO = ConnectionManager.getPersonDAO();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		BasicConfigurator.configure();
-		request.getRequestDispatcher("readPersonLoginPage.jsp").forward(request, response);
+		req.getRequestDispatcher("readPersonLoginPage.jsp").forward(req, resp);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
-		String phone = !request.getParameter("phone").isBlank() ? request.getParameter("phone") : "";
-		String pass = !request.getParameter("pass").isBlank() ? request.getParameter("pass") : "";
-
+		login(req, resp);
+	}
+	
+	private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
+		String phone = !req.getParameter("phone").isBlank() ? req.getParameter("phone") : "";
+		String pass = !req.getParameter("pass").isBlank() ? req.getParameter("pass") : "";
+		
 		if (PersonValidator.isValidLoginInfo(phone, pass)) {
 			if (personDAO.isPhoneAndPassMatch(phone, pass)) {
 				//logger impl 
 				logger.debug("person with phone" + phone + "had a db matching password");
 				logger.info("logging a message");
 				// get the user from db and set user in session
-				request.getSession().setAttribute("currentPerson", personDAO.getPerson(phone));
+				req.getSession().setAttribute("currentPerson", personDAO.getPerson(phone));
 
 				// redirect to readAllEvent
-				response.sendRedirect("ReadAllEventPage");
+//				resp.sendRedirect("ReadAllEventPage");
+				req.getRequestDispatcher("ReadAllEventPage").forward(req, resp);
 
+				
 			} else {
-				request.getSession().setAttribute("message", "password and phone didn't match");
-				request.getRequestDispatcher("readPersonLoginPage.jsp").forward(request, response);
-
+				req.getSession().setAttribute("message", "password and phone didn't match");
+				req.getRequestDispatcher("readPersonLoginPage.jsp").forward(req, resp);
 			}
 		} else {
-			request.getSession().setAttribute("message",
+			req.getSession().setAttribute("message",
 					"phone numbers must be only digits 10-12 length and password but be at least 8 length, contain one symbol, and one uppercase");
-			request.getRequestDispatcher("readPersonLoginPage.jsp").forward(request, response);
-
+			req.getRequestDispatcher("readPersonLoginPage.jsp").forward(req, resp);
 		}
-
 	}
 }

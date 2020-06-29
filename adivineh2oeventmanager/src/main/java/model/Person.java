@@ -1,5 +1,6 @@
 package main.java.model;
 
+//@DeclareRoles("personAdmin")
 public class Person {
 	private int auto_id;
 	private String first_name;

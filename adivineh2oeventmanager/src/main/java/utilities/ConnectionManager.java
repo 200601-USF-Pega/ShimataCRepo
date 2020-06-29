@@ -14,7 +14,7 @@ import main.java.dao.impl.EventDAOImpl;
 import main.java.dao.impl.PersonDAOImpl;
 
 //singelton
-public class ConnectionManager {
+public abstract class ConnectionManager {
 	private static Connection connection;
 
 	private static synchronized Properties getProperties() throws IOException {		

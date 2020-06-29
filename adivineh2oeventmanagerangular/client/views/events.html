@@ -1,0 +1,42 @@
+<body ng-controller="EventsController">
+	<nav ng-include="'/views/top/nav.html'"></nav>
+	<div class="text-center w-85 p-3">
+		<h2 class="d-inline-block">Events</h2>
+		<button ng-click='addEvent()' type="button" class="btn btn-primary btn-lg pull-right">+ <span class="fa fa-heart"></span><span class="fa fa-handshake-o"></span></button>
+
+	</div>
+		{{events.message}}
+		<table class='table' border=1>
+			<thead class="thead-dark">
+				<tr>
+					<th>Title</th>
+					<th>Address #</th>
+					<th>Street</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Zip</th>
+					<th># Helpers Needed</th>
+					<th>Website</th>
+					<th>Event Image</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody ng-repeat='item in events'>
+				<tr ng-repeat="event in item">
+					<td>{{event.title}}</td>
+					<td>{{event.address_number}}</td>
+					<td>{{event.street_name}}</td>
+					<td>{{event.city}}</td>
+					<td>{{event.state}}</td>
+					<td>{{event.zip}}</td>
+					<td>{{event.number_helpers_needed}}</td>
+					<td><a ng-href="https://{{event.info_url}}">{{event.info_url}}</a>
+					</td>
+					<td><img ng-src="http://{{event.event_image_url}}" alt="image of an event"> </td>
+					<td><button class="btn btn-danger" ng-click='deleteEvent(event.title)'>Delete</button></td>
+					<td><button class="btn btn-info" ng-click='viewEvent(event.title)'>View</button></td>
+				</tr>
+			</tbody>
+		</table>
+</body>
