@@ -4,6 +4,7 @@ var path = require('path');
 var router = require('./server/routes/routes.js')
 var bodyParser = require('body-parser');
 
+
 app.use('/inboundURLbase',router)
 app.use(express.static(path.join(__dirname, './bower_components')));
 app.use(bodyParser.json());
