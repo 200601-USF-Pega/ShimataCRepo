@@ -10,7 +10,7 @@
 	<description>An Event management app for Divine H2O</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<servlet.version>3.1.0</servlet.version>
 		<postgresql.version>42.2.13</postgresql.version>
 		<log4j.version>1.2.16</log4j.version>
